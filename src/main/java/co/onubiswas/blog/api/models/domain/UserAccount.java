@@ -1,20 +1,39 @@
 package co.onubiswas.blog.api.models.domain;
 
+
+import lombok.Data;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
+
+
+@Table("user_accounts")
+@Data
 public class UserAccount {
-//    private String id;
     private String name;
+
+    @Id
+    private Integer id;
+
     private String email; // pk
 
-    private String saltedPassword;
+    private String password; // salted password
 
     public String getName() {
         return name;
     }
-    public String getSaltedPassword() {
-        return saltedPassword;
+    public String getPassword() {
+        return password;
     }
     public String getEmail() {
         return email;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public void setEmail(String email) {
@@ -25,7 +44,7 @@ public class UserAccount {
         this.name = name;
     }
 
-    public void setSaltedPassword(String password) {
-        this.saltedPassword = password;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

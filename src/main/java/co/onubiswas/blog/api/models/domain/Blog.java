@@ -1,7 +1,15 @@
 package co.onubiswas.blog.api.models.domain;
 
+import lombok.Data;
+
+import org.springframework.data.annotation.Id;
+
+
+@Data
 public class Blog {
-    private int id; // pk
+    @Id
+    private Integer id;
+
     private String title;
     private String image; // url
     private String description;
@@ -38,3 +46,5 @@ public class Blog {
         this.description = description;
     }
 }
+
+
