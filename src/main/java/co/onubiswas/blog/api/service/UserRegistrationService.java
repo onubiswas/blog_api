@@ -28,9 +28,7 @@ public class UserRegistrationService {
     private boolean validate(RegistrationBody body) {
         log.info("validating user request body: email");
         // check if it is a proper email -- it should contain @
-
         boolean valid = true;
-
         valid = StringUtils.contains(body.getEmail(), "@");
 
         log.info("validating user request body: password");
@@ -39,9 +37,7 @@ public class UserRegistrationService {
         if(body.getPassword().length() < 6) {
             valid = false;
         }
-
         return valid;
-
     }
 
     public void persist(UserAccount account){
