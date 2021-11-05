@@ -4,7 +4,6 @@ import co.onubiswas.blog.api.models.domain.UserAccount;
 import co.onubiswas.blog.api.models.req.RegistrationBody;
 import co.onubiswas.blog.api.repository.UserAccountRepo;
 import co.onubiswas.blog.api.utility.Crypto;
-import com.sun.tools.internal.ws.wsdl.framework.DuplicateEntityException;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.relational.core.conversion.DbActionExecutionException;

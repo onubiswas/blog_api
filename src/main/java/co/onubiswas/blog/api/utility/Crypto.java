@@ -1,7 +1,11 @@
 package co.onubiswas.blog.api.utility;
 
+import org.springframework.stereotype.Component;
+
 import java.util.Base64;
 
+
+@Component
 public class Crypto {
     public static String demoHash(String password) {
         return "0000" + password + "#";

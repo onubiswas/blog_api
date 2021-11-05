@@ -1,5 +1,6 @@
 package co.onubiswas.blog.api;
 
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jdbc.repository.config.AbstractJdbcConfiguration;
@@ -14,16 +15,22 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableJdbcRepositories
+@ConfigurationProperties(prefix = "blogapi")
 class ApplicationConfiguration extends AbstractJdbcConfiguration {
+
+    private String driverClassName;
+    private String dataBaseUrl;
+    private String dataUsername;
+    private String dataPassword;
+
 
     @Bean
     public DataSource dataSource(){
-        // todo: remove hard code -- should read from properties file
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/blog_app");
-        dataSource.setUsername( "blogadmin" );
-        dataSource.setPassword( "secretpass" );
+        dataSource.setDriverClassName(driverClassName);
+        dataSource.setUrl(dataBaseUrl);
+        dataSource.setUsername(dataUsername);
+        dataSource.setPassword(dataPassword);
         return dataSource;
     }
 
@@ -35,5 +42,37 @@ class ApplicationConfiguration extends AbstractJdbcConfiguration {
     @Bean
     TransactionManager transactionManager(DataSource dataSource) {
         return new DataSourceTransactionManager(dataSource);
+    }
+
+    public String getDriverClassName() {
+        return driverClassName;
+    }
+
+    public String getDataBaseUrl() {
+        return dataBaseUrl;
+    }
+
+    public String getDataUsername() {
+        return dataUsername;
+    }
+
+    public String getDataPassword() {
+        return dataPassword;
+    }
+
+    public void setDriverClassName(String driverClassName) {
+        this.driverClassName = driverClassName;
+    }
+
+    public void setDataBaseUrl(String dataBaseUrl) {
+        this.dataBaseUrl = dataBaseUrl;
+    }
+
+    public void setDataUsername(String dataUsername) {
+        this.dataUsername = dataUsername;
+    }
+
+    public void setDataPassword(String dataPassword) {
+        this.dataPassword = dataPassword;
     }
 }
