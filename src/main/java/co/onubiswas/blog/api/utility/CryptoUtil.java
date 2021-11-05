@@ -36,14 +36,5 @@ public class CryptoUtil {
         return token;
     }
 
-    public String generateDummyToken(String payload) {
 
-        return  Base64.getEncoder().encodeToString(payload.getBytes());
-    }
-
-    public String decodeDummyToken(String token) {
-        byte[] decodedBytes = Base64.getDecoder().decode(token);
-        return new String(decodedBytes);
-
-    }
 }
