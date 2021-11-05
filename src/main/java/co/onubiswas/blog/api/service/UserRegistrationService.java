@@ -3,7 +3,7 @@ package co.onubiswas.blog.api.service;
 import co.onubiswas.blog.api.models.domain.UserAccount;
 import co.onubiswas.blog.api.models.req.RegistrationBody;
 import co.onubiswas.blog.api.repository.UserAccountRepo;
-import co.onubiswas.blog.api.utility.Crypto;
+import co.onubiswas.blog.api.utility.CryptoUtil;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.relational.core.conversion.DbActionExecutionException;
@@ -13,9 +13,6 @@ import org.springframework.http.HttpStatus;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-
-import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
 
 @Service
 @Log4j2
@@ -68,7 +65,7 @@ public class UserRegistrationService {
 
         // usually add a salt to the existing password and hash it
         // here for demo purposes no salt added.
-        account.setPassword(Crypto.demoHash(body.getPassword()));
+        account.setPassword(CryptoUtil.demoHash(body.getPassword()));
         persist(account);
 
         return account;

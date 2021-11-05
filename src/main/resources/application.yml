@@ -6,3 +6,5 @@ blogapi:
   dataBaseUrl: "jdbc:mysql://localhost:3306/blog_app"
   dataUsername: "blogadmin"
   dataPassword: "secretpass"
+  tokenKey: "someverystrongkey"
+  tokenIssuer: "co.anupama.api"

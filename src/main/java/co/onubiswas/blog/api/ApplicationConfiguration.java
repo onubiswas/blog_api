@@ -16,12 +16,15 @@ import javax.sql.DataSource;
 @Configuration
 @EnableJdbcRepositories
 @ConfigurationProperties(prefix = "blogapi")
-class ApplicationConfiguration extends AbstractJdbcConfiguration {
+public class ApplicationConfiguration extends AbstractJdbcConfiguration {
 
     private String driverClassName;
     private String dataBaseUrl;
     private String dataUsername;
     private String dataPassword;
+
+    private String tokenKey;
+    private String tokenIssuer;
 
 
     @Bean
@@ -74,5 +77,21 @@ class ApplicationConfiguration extends AbstractJdbcConfiguration {
 
     public void setDataPassword(String dataPassword) {
         this.dataPassword = dataPassword;
+    }
+
+    public String getTokenKey() {
+        return tokenKey;
+    }
+
+    public void setTokenKey(String tokenKey) {
+        this.tokenKey = tokenKey;
+    }
+
+    public String getTokenIssuer() {
+        return tokenIssuer;
+    }
+
+    public void setTokenIssuer(String tokenIssuer) {
+        this.tokenIssuer = tokenIssuer;
     }
 }
