@@ -1,6 +1,5 @@
 package co.onubiswas.blog.api.handlers;
 
-import co.onubiswas.blog.api.models.domain.UserAccount;
 import co.onubiswas.blog.api.models.req.LoginBody;
 import co.onubiswas.blog.api.models.res.LoginResponse;
 import co.onubiswas.blog.api.service.UserLoginService;

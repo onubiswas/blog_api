@@ -1,17 +1,26 @@
 package co.onubiswas.blog.api.handlers;
 
 
-import co.onubiswas.blog.api.models.domain.UserAccount;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import co.onubiswas.blog.api.models.domain.Blog;
+import co.onubiswas.blog.api.models.res.BlogWriteResponse;
+import co.onubiswas.blog.api.service.WriteBlogService;
+import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.*;
 
+@Log4j2
+@Component
 @RestController
-@RequestMapping(path="api/v1/blogs/new")
 public class WriteBlogHandler {
 
-    @PostMapping
-    public UserAccount login() {
-        return null; // todo
+    @Autowired
+    public WriteBlogService writeBlogService;
+
+    @PostMapping(path="api/v1/blogs/new")
+    public BlogWriteResponse blog(@RequestHeader("authorization") String auth, @RequestBody Blog blog) {
+        log.info("WriteBlog request init");
+        return writeBlogService.writeBlog(auth, blog);
+
     }
 }

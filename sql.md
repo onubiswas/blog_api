@@ -15,7 +15,8 @@ CREATE TABLE user_accounts (
 CREATE TABLE blogs (id INT NOT NULL AUTO_INCREMENT,
             title VARCHAR(255),
             image VARCHAR(255), 
-            name VARCHAR(255),
+            email VARCHAR(255),
+            draft TINYINT,
             description LONGTEXT,
             PRIMARY KEY (id));
 ```
