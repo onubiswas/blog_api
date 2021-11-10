@@ -2,6 +2,7 @@ package co.onubiswas.blog.api.service;
 
 import co.onubiswas.blog.api.models.domain.Blog;
 import co.onubiswas.blog.api.models.domain.UserAccount;
+import co.onubiswas.blog.api.models.req.NewBlogRequestBody;
 import co.onubiswas.blog.api.models.res.BlogWriteResponse;
 import co.onubiswas.blog.api.repository.BlogRepo;
 import co.onubiswas.blog.api.repository.UserAccountRepo;
@@ -66,18 +67,17 @@ public class WriteBlogService {
 
     }
 
-    private Boolean validateRequestBody(Blog blog) {
-        if("".equals(blog.getTitle())) {
-            blog.setTitle("untitled");
+    private Blog validateRequestBody(NewBlogRequestBody body) {
+        if("".equals(body.getTitle())) {
+            body.setTitle("untitled");
         }
-        return true;
+        return body.getBlog();
     }
 
-    public BlogWriteResponse writeBlog(String authToken, Blog blog) {
+    public BlogWriteResponse writeBlog(String authToken, NewBlogRequestBody body) {
 
         String email = permit(authToken);
-
-        validateRequestBody(blog);
+        Blog blog = validateRequestBody(body);
         blog.setEmail(email);
 
 

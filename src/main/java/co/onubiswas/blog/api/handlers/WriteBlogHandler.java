@@ -1,7 +1,7 @@
 package co.onubiswas.blog.api.handlers;
 
 
-import co.onubiswas.blog.api.models.domain.Blog;
+import co.onubiswas.blog.api.models.req.NewBlogRequestBody;
 import co.onubiswas.blog.api.models.res.BlogWriteResponse;
 import co.onubiswas.blog.api.service.WriteBlogService;
 import lombok.extern.log4j.Log4j2;
@@ -18,7 +18,7 @@ public class WriteBlogHandler {
     public WriteBlogService writeBlogService;
 
     @PostMapping(path="api/v1/blogs/new")
-    public BlogWriteResponse blog(@RequestHeader("authorization") String auth, @RequestBody Blog blog) {
+    public BlogWriteResponse blog(@RequestHeader("authorization") String auth, @RequestBody NewBlogRequestBody blog) {
         log.info("WriteBlog request init");
         return writeBlogService.writeBlog(auth, blog);
 
