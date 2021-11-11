@@ -14,4 +14,7 @@ public interface BlogRepo extends CrudRepository<Blog, Integer> {
     @Query("SELECT * from blogs WHERE email = :email")
     List<Blog> findUserBlogs(@Param("email") String email);
 
+    @Query("SELECT * from blogs WHERE draft = 0")
+    List<Blog> findAllBlogs();
+
 }

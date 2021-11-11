@@ -3,7 +3,7 @@ package co.onubiswas.blog.api.models.res;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyBlogListsResponse {
+public class BlogListsResponse {
 
     private List<MinimalBlogDetail> items = new ArrayList<>();
 
@@ -18,6 +18,7 @@ public class MyBlogListsResponse {
     public List<MinimalBlogDetail> getItems() {
         return items;
     }
+
 
     public static class MinimalBlogDetail {
         private Integer id;
