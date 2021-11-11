@@ -11,16 +11,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Log4j2
 @RestController
-@RequestMapping(path="api/v1/login")
+@RequestMapping(path="api/v1/all-blogs")
 public class BlogsListHandler {
 
-    @Autowired
-    public BlogsListService svc;
+//    @Autowired
+//    public BlogsListService svc;
 
     @GetMapping
     public BlogListResponse login() {
-        log.info("BlogsList request init");
-        return svc.getBlogs();
-
+//        log.info("BlogsList request init");
+//        return svc.getBlogs();
+        return null;
     }
 }

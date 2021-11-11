@@ -17,54 +17,54 @@ public class Blog {
     private String title;
     private String image; // url
     private String description;
-    private Boolean draft = true;
+    private Integer draft = 1;
 
-    public Boolean getDraft() {
-        return draft;
-    }
-
-    public void setDraft(Boolean draft) {
-        this.draft = draft;
+    public Integer getId() {
+        return id;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public String getTitle() {
         return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public String getImage() {
         return image;
     }
 
-    public void setImage(String image) {
-        this.image = image;
-    }
-
     public String getDescription() {
         return description;
     }
 
+    public Integer getDraft() {
+        return draft;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public void setDraft(Integer draft) {
+        this.draft = draft;
     }
 }
 

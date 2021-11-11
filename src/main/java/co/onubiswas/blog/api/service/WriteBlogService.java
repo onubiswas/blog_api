@@ -7,6 +7,7 @@ import co.onubiswas.blog.api.models.res.BlogWriteResponse;
 import co.onubiswas.blog.api.repository.BlogRepo;
 import co.onubiswas.blog.api.repository.UserAccountRepo;
 import co.onubiswas.blog.api.utility.CryptoUtil;
+import co.onubiswas.blog.api.utility.ValidateToken;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +18,6 @@ import org.springframework.web.server.ResponseStatusException;
 @Log4j2
 @Component
 public class WriteBlogService {
-
-    @Autowired
-    public CryptoUtil cryptoUtil;
 
     @Autowired
     public BlogRepo repo;
@@ -37,35 +35,8 @@ public class WriteBlogService {
         }
     }
 
-    private String permit(String authToken) {
-        log.info("starting token validation for write blog");
-        // validate token  - token format - Bearer tosjl.gjsl.jsl
-        String bearer = StringUtils.substring(authToken, 0, 7).toLowerCase();
-        if (!"bearer ".equals(bearer)) {
-            // raise invalid token format
-            // status code 401
-            throw new ResponseStatusException(
-                    HttpStatus.UNAUTHORIZED,
-                    "please use Bearer token format for the authorization header",
-                    null);
-        }
-        String token = StringUtils.substring(authToken, 7);
-        String userEmail = cryptoUtil.validateJWT(token); //token validation
-        // check if the user exists
-        UserAccount user = userTable.findUserByEmail(userEmail);
-
-        // user does not exist
-        if(null == user) {
-            throw new ResponseStatusException(
-                    HttpStatus.FORBIDDEN,
-                    "user is not a valid user",
-                    null
-                    );
-        }
-
-        return userEmail;
-
-    }
+    @Autowired
+    public ValidateToken validate;
 
     private Blog validateRequestBody(NewBlogRequestBody body) {
         if("".equals(body.getTitle())) {
@@ -76,7 +47,7 @@ public class WriteBlogService {
 
     public BlogWriteResponse writeBlog(String authToken, NewBlogRequestBody body) {
 
-        String email = permit(authToken);
+        String email = validate.permit(authToken);
         Blog blog = validateRequestBody(body);
         blog.setEmail(email);
 
