@@ -13,7 +13,6 @@ public class Blog {
     private Integer id;
 
     private String email; // foreign key soft
-
     private String title;
     private String image; // url
     private String description;

@@ -1,6 +1,7 @@
 package co.onubiswas.blog.api.repository;
 
 import co.onubiswas.blog.api.models.domain.Blog;
+import co.onubiswas.blog.api.models.res.DetailResponse;
 import org.springframework.data.jdbc.repository.query.Modifying;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -24,4 +25,9 @@ public interface BlogRepo extends CrudRepository<Blog, Integer> {
     @Query("UPDATE blogs SET draft = 0 WHERE id = :id ")
     void publishBlog(@Param("id") String id);
 
+    @Query("SELECT * from blogs WHERE id = :id")
+    Blog detailBlog(@Param("id") String id);
+
+    @Query("SELECT name from user_accounts WHERE email = :email")
+    String findAuthorName(@Param("email") String email);
 }
